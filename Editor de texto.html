@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de texto</title>
+
+<style type="text/css">
+    /*asterisco no inicio, vai limitar todas as box do codigo na mesma margin e padding do css*/
+    *{margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+
+body{
+    background: rgb(6, 66, 14);
+}
+
+/*Box de edição, vai formatar os limites da caixa de texto*/
+#con-editor{
+    width: 60%;
+    position: relative;
+    left: 20%;
+    margin-top: 50px;
+}
+/*vai criar uma box atras da box principal pra dar a impressão de um layoutbacana*/
+#editor{
+    display: flex;
+    flex-direction: column;
+    background: darkgrey;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow:rgb(0, 0, 0) 20px 20px 50px;
+}
+/*Caixa de texto*/
+#BoxTexto{
+    background: rgb(236, 237, 240);
+    width: 100%;
+    height: 50vh;
+    outline: none;
+    border: solid 1px cornsilk;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/*MENU*/
+#menu{
+			background: #ddd;
+			width: 100%;
+			border: solid 1px #ccc;
+			border-radius: 5px;
+			padding: 5px;
+		}
+
+		.comando{
+			padding: 5px 10px;
+			background: white;
+			border: solid 1px #ccc;
+
+			outline: none;
+			cursor: pointer;
+		}
+
+		.comando:active{
+			border: solid 1px #555;
+			background: #eee;
+		}
+
+		#btnUnderline > span{
+			text-decoration: underline;
+		}
+
+		#btnColor > span{
+			color: #000000;
+		}
+
+		#btnBackColor > span{
+			background: gold;
+			padding: 3.5px 5px;
+		}
+
+     
+</style>
+
+</head>
+<body>
+
+    <div id="con-editor">
+        <div id="editor">
+        <!--O código abaixo é apenas o dos botões sem ter função-->
+            <div id=menu>
+                <button data-type="bold" class="comando" id="btnBold"><b>N</b></button>
+                <button data-type="italic" class="comando" id="btnItalic"><b>I</b></button>
+                <button data-type="underline" class="comando" id="btnUnderline"><b>_</b></button>
+                <button data-type="foreColor" class="comando" id="btnColor"><b>A</b></button>
+                <button data-type="backColor" class="comando" id="btnBackColor"><span>A</span></button>
+            </div>
+
+            <!--O código abaixo é o da caiixa de texto-->
+
+            <div id="BoxTexto" contenteditable></div> 
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var nome = window.prompt('Olá, você pode escrever textos aqui. Qual seu nome?')
+    
+       
+    </script>
+
+
+    <script type="text/javascript">
+        //Opções, os botões ja foram criados no codigo acima, esses codigos abaixo em javascript atribuem a função a eles
+        var btnBold = document.getElementById('btnBold'),
+            btnItalic = document.getElementById('btnItalic'),
+            btnUnderline = document.getElementById('btnUnderline'),
+            btnColor = document.getElementById('btnColor'),
+            btnBackColor = document.getElementById('btnBlackColor');
+
+        btnBold.onclick = function(event){
+            document.execCommand(btnBold.getAttribute("data-type"),false,null);
+        }
+        
+		btnItalic.onclick = function(event){
+			document.execCommand(btnItalic.getAttribute("data-type"),false,null);
+		}	
+
+		btnUnderline.onclick = function(event){
+			document.execCommand(btnUnderline.getAttribute("data-type"),false,null);
+		}	
+
+		btnColor.onclick = function(event){
+			document.execCommand(btnColor.getAttribute("data-type"),false,"#35037F");
+		}	
+
+		btnBackColor.onclick = function(event){
+			document.execCommand(btnBackColor.getAttribute("data-type"),false,"gold");
+        }
+    </script>
+</body>
+</html>
